@@ -268,20 +268,16 @@ ROLE
 }
 
 
-resource "aws_iam_policy_attachment" "sonarqube_ecs_service" {
-
-  name       = "sonarqube-ecs-service"
-  roles      = ["${aws_iam_role.sonarqube_ecs.name}"]
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-
+resource "aws_iam_role_policy_attachment" "sonarqube_ecs_service" {
+  name        = "sonarqube-ecs-service"
+  policy_arn  = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+  role        = "${aws_iam_role.sonarqube_ecs.name}"
 }
 
-resource "aws_iam_policy_attachment" "sonarqube_ecs_elb" {
-
-  name       = "sonarqube-ecs-elb"
-  roles      = ["${aws_iam_role.sonarqube_ecs.name}"]
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-
+resource "aws_iam_role_policy_attachment" "sonarqube_ecs_elb" {
+  name        = "sonarqube-ecs-elb"
+  role        = "${aws_iam_role.sonarqube_ecs.name}"
+  policy_arn  = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
 }
 
 
